@@ -54,3 +54,5 @@ print("Delta 2 = " + str(delta2))
 #Bearing computations are the same.
 #how to user enter the parameters.
 #import a csv with the parameters
+#clean up bearing output.
+#Distance between points.
