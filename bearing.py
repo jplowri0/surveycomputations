@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 #this function computes the bearing between coordinates.
 #https://stackoverflow.com/questions/31735499/calculate-angle-clockwise-between-two-points
@@ -19,8 +20,11 @@ def decdeg2dms(dd):
 
 #defining the parameters.
 #SCIMs Database
-scims1 = (651414.544, 6431456.404)
-scims2 = (651184.932, 6431496.121)
+#scims1 = (651414.544, 6431456.404) Commenting out to test.
+#scims2 = (651184.932, 6431496.121) Commenting out to test.
+
+scims1 = (10,10)
+scims2 = (20,20)
 
 #Suvery observations
 local1 = (651414.584, 6431456.367)
@@ -39,7 +43,7 @@ delta2 = tuple(map(lambda i, j: i - j, local2, scims2))
 scimsBearingDMS=decdeg2dms(scimsBearingDec)
 localBearingDMS=decdeg2dms(scimsBearingDec)
 
-#This prints the bearing as decimal.
+#This prints the bearing as DMS.
 print("Bearing between SCIMs Points: " + str(scimsBearingDMS))
 print("Bearing between Survey Points: " + str(localBearingDMS))
 
@@ -47,12 +51,24 @@ print("Bearing between Survey Points: " + str(localBearingDMS))
 print("Delta 1 = " + str(delta1))
 print("Delta 2 = " + str(delta2))
 
+#Distance calculations
+
+#distance between scims points
+scimsDistance = math.sqrt( ((scims1[0]-scims2[0])**2)+((scims1[1]-scims2[1])**2) )
+print("Distance between SCIMs Points: " +str(scimsDistance))
+
+#distance between survey Points
+surveyDistance = math.sqrt( ((local1[0]-local2[0])**2)+((local1[1]-local2[1])**2) )
+print("Distance between observed Points: " +str(surveyDistance))
+
+
 
 
 #Things to iron out:
 
-#Bearing computations are the same.
+#Bearing computations are the same.The bearing computed in autocad is wildly different.
 #how to user enter the parameters.
 #import a csv with the parameters
 #clean up bearing output.
-#Distance between points.
+#Show the rotatation required.
+#Apply a CSF to the survey points. THen show.
